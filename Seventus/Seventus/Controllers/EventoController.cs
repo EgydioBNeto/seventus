@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Seventus.Data;
 using Seventus.Models;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,20 @@ namespace Seventus.Controllers
     [Route("controller")]
     public class EventoController : ControllerBase
     {
-        private List<Evento> eventos = new List<Evento>();
+
+        private EventoContext _context;
+
+        public EventoController(EventoContext context) { 
+        
+            _context = context;
+        
+        }
+
         [HttpGet]
-        public IActionResult GetEvento()
+        public IEnumerable<Evento> GetEvento()
         {
 
-            return Ok(eventos);
+            return _context.Eventos;
 
         }
 
@@ -24,15 +33,16 @@ namespace Seventus.Controllers
 
         public IActionResult AddEvento([FromBody]Evento evento)
         {
-            eventos.Add(evento);
-            return Ok(evento);
+            _context.Eventos.Add(evento);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetEventoById), new {Id = evento.Id}, evento);
         }
 
-        [HttpGet("{nome}")]
-        public IActionResult GetEventoByNome(string nome)
+        [HttpGet("{id}")]
+        public IActionResult GetEventoById(int id)
         {
 
-            Evento evento = eventos.FirstOrDefault(evento => evento.Nome == nome);
+            Evento evento = _context.Eventos.FirstOrDefault(evento => evento.Id == id);
             if (evento != null) {
 
                 return Ok(evento);

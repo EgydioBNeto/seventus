@@ -8,6 +8,9 @@ namespace Seventus.Models
 {
     public class Evento
     {
+        [Key]
+        [Required]
+        public int Id { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
@@ -17,6 +20,7 @@ namespace Seventus.Models
         [Required]
         public DateTime DataFinal { get; set; }
         [Required]
+        [StringLength(8, ErrorMessage="O CEP deve ter 8 caracteres")]
         public string CEP { get; set; }
         [Required]
         public string Cidade { get; set; }

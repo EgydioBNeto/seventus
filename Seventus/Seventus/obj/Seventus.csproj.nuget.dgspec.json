@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\egydi\\source\\repos\\Seventus\\Seventus\\Seventus.csproj": {}
+    "C:\\Users\\egydi\\Documents\\GitHub\\seventus\\Seventus\\Seventus\\Seventus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\egydi\\source\\repos\\Seventus\\Seventus\\Seventus.csproj": {
+    "C:\\Users\\egydi\\Documents\\GitHub\\seventus\\Seventus\\Seventus\\Seventus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\egydi\\source\\repos\\Seventus\\Seventus\\Seventus.csproj",
+        "projectUniqueName": "C:\\Users\\egydi\\Documents\\GitHub\\seventus\\Seventus\\Seventus\\Seventus.csproj",
         "projectName": "Seventus",
-        "projectPath": "C:\\Users\\egydi\\source\\repos\\Seventus\\Seventus\\Seventus.csproj",
+        "projectPath": "C:\\Users\\egydi\\Documents\\GitHub\\seventus\\Seventus\\Seventus\\Seventus.csproj",
         "packagesPath": "C:\\Users\\egydi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\egydi\\source\\repos\\Seventus\\Seventus\\obj\\",
+        "outputPath": "C:\\Users\\egydi\\Documents\\GitHub\\seventus\\Seventus\\Seventus\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,9 +44,31 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.2.2, )"
             }
           },
           "imports": [
