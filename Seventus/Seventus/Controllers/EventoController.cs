@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Seventus.Data;
+using Seventus.Data.Dtos;
 using Seventus.Models;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,12 @@ namespace Seventus.Controllers
     {
 
         private EventoContext _context;
+        private IMapper _mapper;
 
-        public EventoController(EventoContext context) { 
+        public EventoController(EventoContext context, IMapper mapper) { 
         
             _context = context;
+            _mapper = mapper;
         
         }
 
@@ -31,8 +35,9 @@ namespace Seventus.Controllers
 
         [HttpPost]
 
-        public IActionResult AddEvento([FromBody]Evento evento)
+        public IActionResult AddEvento([FromBody]CreateEventoDto eventoDto)
         {
+            Evento evento = _mapper.Map<Evento>(eventoDto);
             _context.Eventos.Add(evento);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetEventoById), new {Id = evento.Id}, evento);
@@ -50,6 +55,18 @@ namespace Seventus.Controllers
             return NotFound();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateEvento(int id,[FromBody] Evento eventoDto)
+        {
+            Evento evento1 = _context.Eventos.FirstOrDefault(evento1 => evento1.Id == id);
+            if (evento1 == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(eventoDto, evento1);
+            _context.SaveChanges();
+            return NoContent();
+        }
 
     }
 }
